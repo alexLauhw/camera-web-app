@@ -15,11 +15,11 @@ function cameraStart() {
     }
 }
 
-var constraints = { video: { facingMode: {frontCamera ? "user" : "environment"}}, audio: false};
+var constraints = { video: { facingMode: {frontCamera ? "user" : "environment"} }, audio: false};
 
 navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
     currentStream = stream;
-    cameraDevice.scrObject = stream;
+    cameraDevice.srcObject = stream;
 }).catch(function(error) {
     console.error("Error happened", error);
 })
