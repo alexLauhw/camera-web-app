@@ -23,3 +23,24 @@ navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
 }).catch(function(error) {
     console.error("Error happened", error);
 })
+
+takePhotoButton.onClick = function() {
+    cameraView.wiidth = cameraDevice.videoWidth;
+    cameraView.height = cameraDevice.videoHeight;
+    cameraView.getContext("2d").drawImage(cameraDevice, 0, 0);
+    photoDisplay.src = cameraView.toDataURL("image/webp");
+    photoDisplay.classList.add("photo-take");
+}
+
+frontCameraButton.onClick = function() {
+    frontCamera = !frontCamera;
+    if (frontCamera) {
+        frontCameraButton.textContext = "Back Camera";
+    } else {
+        frontCameraButton.textContext = "Front Camera";
+    }
+
+    cameraStart()
+}
+
+window.addEventListener("load", cameraStart);
